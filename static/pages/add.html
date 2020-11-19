@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='pl'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Register page</title>
+
+    <link rel='stylesheet' href='css/style.css' />
+</head>
+
+<body>
+    <header>
+        <a href='/'>main</a>
+        <a href='random'>random</a>
+        <a href=''>add</a>
+    </header>
+    <main>
+        <h1>add a quote!</h1>
+
+        <form method='POST' action='/add'>
+            <label for='author'>author</label>
+            <br />
+            <select required name='author' id='author'>
+                <option></option>
+            </select>
+            <br />
+            <label for='quote'>quote</label>
+            <br />
+            <textarea required id='quote' name='quote' rows='2' cols='80'></textarea>
+            <br />
+            <input type='submit' value='send quote!'>
+        </form>
+    </main>
+</body>

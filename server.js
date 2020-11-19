@@ -9,7 +9,7 @@ const random_between = (min, max) => min + Math.floor(Math.random() * (max - min
 const app = express()
 const PORT = process.env.PORT || 3000
 
-data = fs.readFileSync(path.join(__dirname + '/static/db/database.json'))
+var data = fs.readFileSync(path.join(__dirname + '/static/db/database.json'))
 json = JSON.parse(data)
 
 function get_random_quote(author) {
@@ -61,6 +61,15 @@ function read_authors(author) {
     return out
 }
 
+function add_quote(author, quote) {
+    for (let i = 0; i < json.length; i++) {
+        if (get_author(i) == author) {
+            json[i][author][json[i][author].length] = { "quote" : quote }
+            break
+        }
+    }
+}
+
 app.use(express.static('static'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -109,8 +118,12 @@ app.post('/add', (req, res) => {
     if (is_quote_in_db(author, quote)) {
         res.send('This quote is already in Our database! ' + "<a href='add'>[go back]</a>")
     } else {
-        res.send(data
-            .replace('<option></option>', read_authors(author)))
+        add_quote(author, quote)
+        fs.writeFile(
+            path.join(__dirname + '/static/db/database.json'), 
+            JSON.stringify(json), 
+            (err) => { if (err) return console.log(err) })
+        res.send('Successfully added a new quote. ' + "<a href='add'>[go back]</a>")
     }
 
     res.end()

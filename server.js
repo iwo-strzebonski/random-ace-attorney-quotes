@@ -155,7 +155,7 @@ app.post('/upload', (req, res) => {
 
     form.parse(req, (err, fields, files) => {  })
 
-    form.on('file', function(field, file) {
+    form.on('file', (field, file) => {
         fs.rename(
             file.path,
             form.uploadDir + "/" + file.name, 

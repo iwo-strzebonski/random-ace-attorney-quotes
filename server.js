@@ -3,6 +3,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const fs = require('fs')
 const favicon = require('serve-favicon')
+const formidable = require('formidable')
 
 const random_between = (min, max) => min + Math.floor(Math.random() * (max - min + 1))
 
@@ -84,7 +85,7 @@ app.get('/:site', (req, res) => {
             var data = fs.readFileSync(path.join(__dirname + '/static/pages/random.html'), 'utf-8')
             res.send(data
                 .replace('<h2></h2>', '<h2>' + get_random_quote('Apollo Justice') + '</h2>')
-                .replace('<option></option>', read_authors()))
+                .replace('<option></option>', read_authors())).end()
             break
     
         case 'add':
@@ -93,8 +94,24 @@ app.get('/:site', (req, res) => {
                 .replace('<option></option>', read_authors()))
             break
 
+        case 'download':
+            res.download(
+                path.join(__dirname) + '/static/db/database.json',
+                'database.json',
+                (err) => { if (err) return console.log(err) })
+            break
+
+        case 'upload':
+            res.send("<form enctype='multipart/form-data' method='POST' action='/upload'>\
+            <label for='file'>Choose a file: </label>\
+            <input type='file' required accept='.json' name='file'>\
+            <br />\
+            <input type='submit' value='send database'>\
+            </form>").end()
+            break
+        
         default:
-            res.sendStatus(404)
+            res.sendStatus(404).end()
             break
     }
 })
@@ -111,7 +128,6 @@ app.post('/random', (req, res) => {
 })
 
 app.post('/add', (req, res) => {
-    var data = fs.readFileSync(path.join(__dirname + '/static/pages/add.html'), 'utf-8')
     var author = req.body.author
     var quote = req.body.quote
 
@@ -127,6 +143,23 @@ app.post('/add', (req, res) => {
     }
 
     res.end()
+})
+
+app.post('/upload', (req, res) => {
+    let form = formidable({})
+    var files = []
+
+    form.parse(req, (err, fields, files) => {
+        // console.log(files)
+    })
+    // form.keepExtensions = true
+    // form.uploadDir = path.join(__dirname + '/static/db/')
+
+    // fs.unlinkSync(
+        // path.join(__dirname) + '/static/db/database.json',
+        // (err) => { if (err) return console.log(err) })
+
+    res.redirect('/').end()
 })
 
 app.listen(PORT, () => {

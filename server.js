@@ -3,7 +3,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const fs = require('fs')
 const favicon = require('serve-favicon')
-const formidable = require('formidable')
+// const formidable = require('formidable')
 
 const random_between = (min, max) => min + Math.floor(Math.random() * (max - min + 1))
 
@@ -104,7 +104,7 @@ app.get('/:site', (req, res) => {
                 (err) => { if (err) return console.log(err) })
             break
 
-        case 'upload':
+        /*case 'upload':
             fs.unlinkSync(
                 path.join(__dirname) + '/static/db/database.json',
                 (err) => { if (err) return console.log(err) })
@@ -114,7 +114,7 @@ app.get('/:site', (req, res) => {
             <br />\
             <input type='submit' value='send database'>\
             </form>").end()
-            break
+            break*/
         
         default:
             res.sendStatus(404).end()
@@ -151,7 +151,7 @@ app.post('/add', (req, res) => {
     res.end()
 })
 
-app.post('/upload', (req, res) => {
+/*app.post('/upload', (req, res) => {
     let form = new formidable.IncomingForm()
     form.uploadDir = path.join(__dirname + '/static/db/')
     form.keepExtensions = true
@@ -166,7 +166,7 @@ app.post('/upload', (req, res) => {
     })
 
     res.redirect('/')
-})
+})*/
 
 app.listen(PORT, () => {
     console.log('Server started on port: ' + PORT)

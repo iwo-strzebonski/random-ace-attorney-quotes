@@ -10,6 +10,9 @@ const random_between = (min, max) => min + Math.floor(Math.random() * (max - min
 const app = express()
 const PORT = process.env.PORT || 3000
 
+database = fs.readFileSync(path.join(__dirname + '/static/db/database.json'))
+json = JSON.parse(database)
+
 function get_random_quote(author) {
     var out = ''
 

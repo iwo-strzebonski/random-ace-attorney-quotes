@@ -10,9 +10,6 @@ const random_between = (min, max) => min + Math.floor(Math.random() * (max - min
 const app = express()
 const PORT = process.env.PORT || 3000
 
-var data = fs.readFileSync(path.join(__dirname + '/static/db/database.json'))
-json = JSON.parse(data)
-
 function get_random_quote(author) {
     var out = ''
 
@@ -82,6 +79,9 @@ app.get('/:site', (req, res) => {
 
     switch (site) {
         case 'random':
+            database = fs.readFileSync(path.join(__dirname + '/static/db/database.json'))
+            json = JSON.parse(database)
+
             var data = fs.readFileSync(path.join(__dirname + '/static/pages/random.html'), 'utf-8')
             res.send(data
                 .replace('<h2></h2>', '<h2>' + get_random_quote('Apollo Justice') + '</h2>')

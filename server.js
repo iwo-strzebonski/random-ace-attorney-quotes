@@ -102,6 +102,9 @@ app.get('/:site', (req, res) => {
             break
 
         case 'upload':
+            fs.unlinkSync(
+                path.join(__dirname) + '/static/db/database.json',
+                (err) => { if (err) return console.log(err) })
             res.send("<form enctype='multipart/form-data' method='POST' action='/upload'>\
             <label for='file'>Choose a file: </label>\
             <input type='file' required accept='.json' name='file'>\
@@ -146,20 +149,20 @@ app.post('/add', (req, res) => {
 })
 
 app.post('/upload', (req, res) => {
-    let form = formidable({})
-    var files = []
+    let form = new formidable.IncomingForm()
+    form.uploadDir = path.join(__dirname + '/static/db/')
+    form.keepExtensions = true
 
-    form.parse(req, (err, fields, files) => {
-        // console.log(files)
+    form.parse(req, (err, fields, files) => {  })
+
+    form.on('file', function(field, file) {
+        fs.rename(
+            file.path,
+            form.uploadDir + "/" + file.name, 
+            (err) => { if (err) return console.log(err) })
     })
-    // form.keepExtensions = true
-    // form.uploadDir = path.join(__dirname + '/static/db/')
 
-    // fs.unlinkSync(
-        // path.join(__dirname) + '/static/db/database.json',
-        // (err) => { if (err) return console.log(err) })
-
-    res.redirect('/').end()
+    res.redirect('/')
 })
 
 app.listen(PORT, () => {

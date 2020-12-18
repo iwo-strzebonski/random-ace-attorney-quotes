@@ -40,6 +40,6 @@
     ],
     "theme_color": "#ffc40d",
     "background_color": "#ffc40d",
-    "start_url": "https://random-ace-attorney-quotes.herokuapp.com/",
+    "start_url": "https://random-ace-attorney-quotes.herokuapp.com",
     "display": "standalone"
 }

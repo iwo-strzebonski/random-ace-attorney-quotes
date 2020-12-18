@@ -1,7 +1,6 @@
 {
   "name": "random-ace-attorney-quotes",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
   "main": "server.js",
   "directories": {
     "doc": "docs"
@@ -10,6 +9,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
+    "path": "^0.12.7",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {},
@@ -22,9 +22,10 @@
     "url": "git+https://github.com/iwo-strzebonski/random-ace-attorney-quotes.git"
   },
   "author": "Iwo Strzeboński",
-  "license": "GPL-3.0-or-later",
+  "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/iwo-strzebonski/random-ace-attorney-quotes/issues"
   },
-  "homepage": "https://github.com/iwo-strzebonski/random-ace-attorney-quotes#readme"
+  "homepage": "https://github.com/iwo-strzebonski/random-ace-attorney-quotes#readme",
+  "description": ""
 }

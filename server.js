@@ -23,7 +23,6 @@ function get_random_quote(author) {
             } catch {
                 out = ''
             }
-
             break
         }
     }
@@ -44,7 +43,6 @@ function is_quote_in_db(author, quote) {
             }
         }
     }
-
     return out
 }
 
@@ -58,7 +56,6 @@ function read_authors(author) {
     for (let i = 0; i < json.length; i++) {
         out += `<option ${author == get_author(i) ? 'selected' : ''}>` + get_author(i) + '</option>'
     }
-
     return out
 }
 
@@ -72,10 +69,7 @@ function add_quote(author, quote) {
 }
 
 app.use(express.static('static'))
-
 app.use(bodyParser.urlencoded({ extended: true }))
-
-app.use(favicon(__dirname + '/static/gfx/favicon.ico'));
 
 app.get('/:site', (req, res) => {
     site = req.params.site

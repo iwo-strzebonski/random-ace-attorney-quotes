@@ -1,0 +1,79 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Quote": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"character": {
+						"type": "string"
+					},
+					"quote": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"character",
+					"quote"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "random-ace-attorney-quotes",
+		"version": "2.0.0",
+		"description": "Server for random Ace Attorney quotes",
+		"license": {
+			"name": "WTFPL"
+		},
+		"contact": {
+			"name": "Octoturge ",
+			"email": "iwo.strzebonski@gmail.com"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/quotes/?limit={limit}&character={character}": {
+			"get": {
+				"operationId": "GetQuotes",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Quote"
+									},
+									"type": "array",
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Ace Attorney Quotes"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

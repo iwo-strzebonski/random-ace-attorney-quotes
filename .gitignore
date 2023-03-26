@@ -4,3 +4,7 @@
 dist/
 node_modules
 package-lock.json
+.env
+build
+yarn-error.log
+

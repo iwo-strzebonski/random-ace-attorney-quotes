@@ -1,0 +1,24 @@
+trailingComma: none
+
+semi: false
+endOfLine: auto
+
+bracketSpacing: true
+bracketSameLine: false
+
+singleQuote: true
+jsxSingleQuote: true
+quoteProps: consistent
+
+useTabs: false
+tabWidth: 2
+
+printWidth: 120
+proseWrap: always
+
+arrowParens: always
+
+htmlWhitespaceSensitivity: css
+
+insertPragma: false
+requirePragma: false

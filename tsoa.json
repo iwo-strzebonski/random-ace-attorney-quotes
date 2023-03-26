@@ -1,0 +1,25 @@
+{
+  "entryFile": "src/index.ts",
+  "controllerPathGlobs": [
+    "src/controllers/**/*.ts",
+    "src/controllers/**/*.js",
+    "src/routes/**/*.ts",
+    "src/routes/**/*.js"
+  ],
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "spec": {
+    "basePath": "/",
+    "outputDirectory": "src",
+    "specVersion": 3,
+    "servers": [
+      {
+        "url": "http://localhost:2137/",
+        "description": "Localhost"
+      }
+    ]
+  },
+  "routes": {
+    "basePath": "/",
+    "routesDir": "src"
+  }
+}
